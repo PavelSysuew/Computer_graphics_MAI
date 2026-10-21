@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(vulkan-starter-app LANGUAGES C CXX)
 
-add_executable(${PROJECT_NAME} source/main.cpp source/graphics_internal.cpp source/application.cpp)
+add_executable(${PROJECT_NAME} source/main.cpp source/graphics_internal.cpp source/application.cpp source/torus.cpp)
 
 if(LINUX)
 	target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wno-missing-field-initializers)
@@ -105,6 +105,11 @@ if(GLSLC_FOUND)
 
 	# compile_shader(example.vert)
 	# compile_shader(example.frag)
+
+	compile_shader(triangle.vert)
+	compile_shader(triangle.frag)
+	compile_shader(torus.vert)
+	compile_shader(torus.frag)
 
 	add_custom_target(shaders DEPENDS ${_SHADER_BINARIES})
 	add_dependencies(${PROJECT_NAME} shaders)
